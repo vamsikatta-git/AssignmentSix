@@ -1,7 +1,6 @@
 const api_key = "89703a5d";
 
-const fav = async (event,id) => {
-  event.stopPropagation();
+const fav = async (id) => {
   const response = await fetch(`https://www.omdbapi.com/?apikey=${api_key}&i=${id}`);
   const data = await response.json();
 
@@ -141,8 +140,8 @@ const displayCards = (items)=>{
   cardsDiv.innerHTML = items
     .map((item) => `
       <div class="col">
-        <div class="card" onclick="movieDetailsDiv('${item.imdbID}')">
-          <img src="${item.Poster === "N/A" ? "https://via.placeholder.com/150" : item.Poster}" class="card-img-top" alt="poster">
+        <div class="card">
+          <img src="${item.Poster === "N/A" ? "https://via.placeholder.com/150" : item.Poster}" onclick="movieDetailsDiv('${item.imdbID}')" class="card-img-top" alt="poster">
           <div class="card-body bg-dark text-light">
             <h5 class="card-title"><strong>Title:</strong> ${item.Title}</h5>
             <p class="card-text"><strong>Type:</strong> ${item.Type}</p>
